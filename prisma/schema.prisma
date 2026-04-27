@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Tweet {
+  id              String   @id
+  type            String   // 'bookmark', 'like', etc.
+  url             String
+  authorName      String
+  authorUsername  String
+  authorAvatar    String?
+  text            String
+  createdAt       String
+  media           String?  // JSON string representing media array (images/videos)
+  isReply         Boolean  @default(false)
+  
+  // Dashboard spesifik eklentiler:
+  tags            String?  // Etiketler (virgülle ayrılmış)
+  projectName     String?  // Gelişmiş sınıflandırma/proje adı
+  notes           String?  // Kullanıcının kişisel notları
+  quotedTweet     String?  // JSON: Alıntı yapılan tweet (quote tweet) bilgisi
+  isArchived      Boolean  @default(false)
+  updatedAt       DateTime @updatedAt
+  addedAt         DateTime @default(now())
+
+  // Thread (Flood) desteği: Alt gönderi ilişkisi
+  parentId        String?
+  parent          Tweet?   @relation("ThreadParts", fields: [parentId], references: [id], onDelete: Cascade)
+  children        Tweet[]  @relation("ThreadParts")
+}

@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Web Exporter Sayfa Sayfa Export",
+  "version": "1.0.2",
+  "description": "Bookmarks/Likes listesinde mevcut sayfadaki tum satirlari secip Export Data yapar; sonraki sayfaya gecer.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "web-exporter-batch@local",
+      "strict_min_version": "109.0"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://x.com/*",
+        "*://www.x.com/*",
+        "*://twitter.com/*",
+        "*://www.twitter.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
