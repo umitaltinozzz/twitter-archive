@@ -26,6 +26,10 @@ The pipeline is entirely local: no third-party cloud storage, no API keys, no ra
 
 ---
 
+## Project Status
+
+Personal local-first tool / portfolio project. The implementation is public, but personal archives, downloaded media, and private user data are intentionally not included.
+
 ## Features
 
 - **Full export pipeline** — captures tweet data via a browser userscript and downloads all associated media (images, videos, GIFs) in bulk
